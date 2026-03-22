@@ -215,7 +215,7 @@ Cura does not natively feature a "Before Layer Change" field in Machine Settings
 
 | Macro | Description |
 |---|---|
-| `PRINT_START` | Main orchestration macro. Handles heat-soaking, homing, nozzle cleaning, Z-tilt, adaptive meshing, and the prime blob. Requires slicer parameters. |
+| `PRINT_START` | Main orchestration macro. Handles heat-soaking, homing, nozzle cleaning, Z-tilt/quad_gantry_level, adaptive meshing, and the prime blob. Requires slicer parameters. |
 | `PRINT_END` | Safely terminates the print. Retracts filament, disables heaters, parks the toolhead, and triggers the Nevermore cooldown timer. |
 | `_PRINT_STATE` | Hidden variable macro that memorizes extruder temperatures across pauses and filament swaps. |
 | `_HOOK_ON_PAUSE` | System hook that triggers notifications when a print is paused. |
@@ -237,7 +237,7 @@ Cura does not natively feature a "Before Layer Change" field in Machine Settings
 
 | Macro | Description |
 |---|---|
-| `homing_override` | Replaces the standard `G28` with a safe sequence. Performs Z-hops and ensures X and Y are homed sensorless before centering and homing Z with the Cartographer. |
+| `homing_override` | Replaces the standard `G28` with own sequence when needed. |
 | `_CONDITIONAL_HOME` | Checks if the printer is already homed. If yes, skips homing to save time; if no, triggers `G28`. |
 | `_HOME_AXIS` | Helper macro that temporarily lowers motor currents and kinematic limits for safe sensorless homing. |
 | `CENTER` | Moves the toolhead to the exact center of the build volume, ensuring a safe Z-hop is performed first. |
@@ -246,7 +246,7 @@ Cura does not natively feature a "Before Layer Change" field in Machine Settings
 
 | Macro | Description |
 |---|---|
-| `Z_TILT_ADJUST` | Wrapper for the standard Klipper command with added notifications. |
+| `Z_TILT_ADJUST/QUAD_GANTRY_LEVEL` | Wrapper for the standard Klipper command with added notifications. |
 | `BED_MESH_CALIBRATE` | Wrapper for the standard Klipper command with added notifications. |
 | `PID_BED` | Convenience macro for PID tuning the heated bed. Automatically homes and centers the toolhead. |
 | `PID_HOTEND` | Convenience macro for PID tuning the extruder. Automatically homes, centers, and activates the part cooling fan for realistic thermal simulation. |
@@ -273,7 +273,7 @@ Cura does not natively feature a "Before Layer Change" field in Machine Settings
 |---|---|
 | `G27` | Parks the toolhead *(Marlin)*. |
 | `G29` | Executes `BED_MESH_CALIBRATE` *(Marlin)*. |
-| `G32` | Homes the printer and executes `CARTOGRAPHER_TOUCH_HOME` *(RepRap)*. |
+| `G32` | Homes the printer and leveling  *(RepRap)*. |
 | `M108` | Dummy — prevents console spam for "Cancel Heating" *(Marlin)*. |
 | `M116` | Dummy — prevents console spam for "Wait for all temperatures" *(RepRap)*. |
 | `M201` | Dummy — prevents console spam for "Set Max Acceleration" *(Marlin)*. |
