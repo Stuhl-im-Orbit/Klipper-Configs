@@ -50,7 +50,7 @@ A Trident scaled down to 1515 aluminium extrusions, designed by PrintersForAnts 
 |---|---|---|
 | **Mainboard** | BTT SKR 2 + LDO NiteHawk-36 | BTT SKRat V1.0 + Orbitool O2 |
 | **Probe** | Super Pinda | Super Pinda |
-| **Extruder** | — | Orbiter V2 |
+| **Extruder** | Bondtech LGX Lite | Orbiter V2 |
 | **Hotend** | E3D Revo | Phaetus Rapido UHF |
 | **Extensions** | [TMC Autotune](https://github.com/andrewmcgr/klipper_tmc_autotune) · [G-Code Shell Command](https://github.com/dw-0/kiauh/blob/master/docs/gcode_shell_command.md) | [TMC Autotune](https://github.com/andrewmcgr/klipper_tmc_autotune) · [G-Code Shell Command](https://github.com/dw-0/kiauh/blob/master/docs/gcode_shell_command.md) |
 
@@ -68,7 +68,7 @@ The V-Minion is a compact open-frame cartesian printer from Rat Rig with a 180 m
 |---|---|
 | **Mainboard** | BTT SKR Pico V1.0 + LDO Picobilical |
 | **Probe** | — |
-| **Extruder** | Bondtech LGX Lite |
+| **Extruder** | Galileo 2 |
 | **Hotend** | E3D Revo |
 | **Extensions** | [TMC Autotune](https://github.com/andrewmcgr/klipper_tmc_autotune) · [Shake&Tune](https://github.com/Frix-x/klippain-shaketune) |
 
