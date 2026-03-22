@@ -4,6 +4,110 @@
 
 ---
 
+## ✨ Core Features
+
+All configurations in this repository share a common macro framework built around the following principles:
+
+- **Centralized Variable Management:** All crucial speeds, positions, and parameters are defined in a single master macro (`_MY_VARS`) and dynamically calculated at system boot based on global printer limits.
+- **Safe Sensorless Homing** *(where applicable)*: Automatically reduces motor current and acceleration before tapping the physical limits to protect the hardware and prevent false StallGuard triggers.
+- **Smart Filament Management:** Load and unload routines evaluate current thermal states. They maintain existing hotend temperatures or safely heat up to a fallback threshold if the hotend is cold.
+- **Nevermore Filter Integration** *(where applicable)*: The Nevermore filter automatically kicks in based on bed temperature thresholds (e.g., for ABS/ASA) and runs a 10-minute cooldown cycle after the print finishes.
+- **Dynamic Prime Blob:** Calculates the extrusion volume for the prime blob based on the configured nozzle diameter, making nozzle swaps hassle-free.
+
+---
+
+## 📖 Macro Reference Guide
+
+### 🎬 Print Lifecycle & State
+
+| Macro | Description |
+|---|---|
+| `PRINT_START` | The main orchestration macro. Handles heat-soaking, homing, nozzle cleaning, Z-tilt, adaptive meshing, and the prime blob. Requires slicer parameters. |
+| `PRINT_END` | Safely terminates the print. Retracts filament, disables heaters, parks the toolhead, and triggers the Nevermore cooldown timer. |
+| `_PRINT_STATE` | A hidden variable macro that memorizes extruder temperatures across pauses and filament swaps. |
+| `_HOOK_ON_PAUSE` | System hook that triggers LED states and notifications when a print is paused. |
+| `_HOOK_ON_RESUME` | System hook that resets LED states to printing when resuming. |
+| `_HOOK_ON_CANCEL` | System hook that ensures background loops are reset and the filter cooldown begins on cancel. |
+
+---
+
+### 🧵 Extruder & Filament
+
+| Macro | Description |
+|---|---|
+| `LOAD_FILAMENT` | Safely loads filament with predefined speeds, preserving the current hotend target temperature. |
+| `UNLOAD_FILAMENT` | Ejects filament and includes a tip-shaping sequence to prevent stringing inside the extruder. |
+| `M600` | Standard filament change routine. Pauses the print, memorizes the temperature, unloads the filament, and turns off the heater for safe extended idle times. |
+| `PRIME_BLOB` | Purges the nozzle on the edge of the bed and cleanly snaps the filament tail before starting the print. |
+| `CLEAN_NOZZLE` | Executes a precise wiping pattern across a fixed silicone brush to clean the nozzle before physical probing. |
+| `_TOGGLE_FILAMENT_SENSORS` | Globally enables or disables the runout and motion sensors to prevent false triggers during purges or macros. |
+
+---
+
+### 🧭 Movement & Homing
+
+| Macro | Description |
+|---|---|
+| `homing_override` | Replaces the standard `G28` command with a safe sequence. Performs Z-hops and ensures X and Y are homed sensorless before centering and homing Z with the Cartographer. |
+| `_CONDITIONAL_HOME` | Checks if the printer is already homed. If yes, it skips homing to save time; if no, it triggers `G28`. |
+| `_HOME_AXIS` | The helper macro that temporarily lowers motor currents and kinematic limits for safe sensorless homing. |
+| `CENTER` | Moves the toolhead to the exact center of the build volume, ensuring a safe Z-hop is performed first. |
+
+---
+
+### 📐 Calibration & Tuning
+
+| Macro | Description |
+|---|---|
+| `Z_TILT_ADJUST` | Wrapper for the standard Klipper command that adds LED state changes (yellow) and notifications. |
+| `BED_MESH_CALIBRATE` | Wrapper for the standard Klipper command that adds LED state changes (green) and notifications. |
+| `PID_BED` | Convenience macro for PID tuning the heated bed. Automatically homes and centers the toolhead. |
+| `PID_HOTEND` | Convenience macro for PID tuning the extruder. Automatically homes, centers, and activates the part cooling fan for realistic thermal simulation. |
+
+---
+
+### ⚙️ Variables, Boot & Safety Loops
+
+| Macro | Description |
+|---|---|
+| `_CLIENT_VARIABLE` | Defines specific configuration variables utilized by the Mainsail web interface (e.g., custom park positions and idle timeouts). |
+| `_MY_VARS` | Central user-defined configuration dictionary storing factors, hop heights, temperatures, and physical coordinates. |
+| `_INIT_MY_VARS` *(delayed_gcode)* | Boot script executed 2 seconds after startup. Calculates dynamic speeds and center coordinates based on Klipper's hardware limits. |
+| `_STOP_NEVERMORE` *(delayed_gcode)* | Timed macro to cleanly shut down the VOC filter after a defined cooldown period. |
+
+---
+
+### 🔧 System Helpers
+
+| Macro | Description |
+|---|---|
+| `_NOTIFY` | Pushes formatted messages to both the Mainsail UI and the Klipper console simultaneously. |
+| `_RESET_STATE` | Clears speed factors, extrusion multipliers, bed meshes, and background loops to reset the printer to a clean state. |
+| `_SET_LED_STATE` | Controls the Neopixel colors based on predefined logical printer states. |
+
+---
+
+### 🔌 Compatibility Aliases & Dummies
+
+| Macro | Description |
+|---|---|
+| `G27` | Parks the toolhead *(Marlin compatibility)*. |
+| `G29` | Executes `BED_MESH_CALIBRATE` *(Marlin compatibility)*. |
+| `G32` | Homes the printer and executes `CARTOGRAPHER_TOUCH_HOME` *(RepRap compatibility)*. |
+| `M108` | Dummy — prevents console spam for "Cancel Heating" *(Marlin compatibility)*. |
+| `M116` | Dummy — prevents console spam for "Wait for all temperatures" *(RepRap compatibility)*. |
+| `M201` | Dummy — prevents console spam for "Set Max Acceleration" *(Marlin compatibility)*. |
+| `M203` | Dummy — prevents console spam for "Set Max Feedrate" *(Marlin compatibility)*. |
+| `M205` | Dummy — prevents console spam for "Set Advanced Settings/Jerk" *(Marlin compatibility)*. |
+| `M300` | Placeholder to intercept standard beep/play tone commands *(Marlin/RepRap compatibility)*. |
+| `M572` | Sets Pressure Advance *(RepRap compatibility)*. |
+| `M900` | Sets Pressure Advance, routing to `M572` *(Marlin/Cura compatibility)*. |
+| `M601` | Pauses the print *(PrusaSlicer/Marlin compatibility)*. |
+| `M701` | Triggers the `LOAD_FILAMENT` macro *(Marlin compatibility)*. |
+| `M702` | Triggers the `UNLOAD_FILAMENT` macro *(Marlin compatibility)*. |
+
+---
+
 ## 🗂️ Printers
 
 ### [Doron](./Doron/printer.cfg)
