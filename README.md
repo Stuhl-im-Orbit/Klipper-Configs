@@ -8,7 +8,7 @@
 
 ### [Doron](./Doron/printer.cfg)
 
-**Delta · ⌀ 156 mm**
+**Delta · ⌀ 150 mm**
 
 | | |
 |---|---|
@@ -62,7 +62,7 @@ The V-Minion is a compact open-frame cartesian printer from Rat Rig with a 180 m
 
 ### [Voron0](./Voron0/printer.cfg)
 
-**CoreXY · 120 × 120 × 121 mm**
+**CoreXY · 120 × 120 × 120 mm**
 
 | | |
 |---|---|
@@ -84,7 +84,7 @@ The smallest Voron in the fleet — a fully enclosed CoreXY designed to print AB
 
 | | **Voron (300)** | **Voron-2-350** |
 |---|---|---|
-| **Build Volume** | 300 × 300 × 260 mm | 350 × 350 × 330 mm |
+| **Build Volume** | 300 × 300 × 300 mm | 350 × 350 × 350 mm |
 | **Mainboard** | BTT Octopus V1.0 + BTT EBB SB2209 + BTT U2C | LDO Leviathan V1.2 + LDO NiteHawk-SB |
 | **Probe** | Voron Tap | Voron Tap |
 | **Extruder** | Galileo 2 | Galileo 2 |
