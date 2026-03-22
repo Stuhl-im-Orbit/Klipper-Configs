@@ -13,7 +13,7 @@
 | | |
 |---|---|
 | **Mainboard** | BTT SKRat V1.0 |
-| **Probe** | Membrane pressure leveling adaptation |
+| **Probe** | Membrane pressure leveling adapter |
 | **Extruder** | Orbiter V2.5 |
 | **Hotend** | Phaetus Dragon High-Flow |
 | **Extensions** | [TMC Autotune](https://github.com/andrewmcgr/klipper_tmc_autotune) · [G-Code Shell Command](https://github.com/dw-0/kiauh/blob/master/docs/gcode_shell_command.md) |
