@@ -6,14 +6,15 @@
 
 ## 🗂️ Printers
 
-### [Doron](./Doron) — [Doron-Velta](https://github.com/rogerlz/Doron-Velta)
+### [Doron](./Doron/printer.cfg)
+[↗ Doron-Velta](https://github.com/rogerlz/Doron-Velta)
 
 **Delta · ⌀ 156 mm**
 
 | | |
 |---|---|
 | **Mainboard** | BTT SKRat V1.0 |
-| **Probe** | Membrane pressure leveling adapter |
+| **Probe** | Membrane pressure leveling adaptation |
 | **Extruder** | Orbiter V2.5 |
 | **Hotend** | Phaetus Dragon High-Flow |
 
@@ -21,7 +22,8 @@ A community-built delta printer inspired by Voron aesthetics, born as an April F
 
 ---
 
-### [SaladFork](./SaladFork) — [Salad Fork](https://github.com/PrintersForAnts/Salad_Fork)
+### [SaladFork](./SaladFork/printer.cfg)
+[↗ Salad Fork](https://github.com/PrintersForAnts/Salad_Fork)
 
 **CoreXY · 180 × 180 × 180 mm**
 
@@ -36,7 +38,8 @@ A Trident scaled down to 1515 aluminium extrusions, designed by PrintersForAnts 
 
 ---
 
-### [V-Minion-Orange](./V-Minion-Orange) · [V-Minion-Yellow](./V-Minion-Yellow) — [Rat Rig V-Minion](https://github.com/Rat-Rig/V-Minion)
+### [V-Minion-Orange](./V-Minion-Orange/printer.cfg) · [V-Minion-Yellow](./V-Minion-Yellow/printer.cfg)
+[↗ Rat Rig V-Minion](https://github.com/Rat-Rig/V-Minion)
 
 **Cartesian · 180 × 180 × 180 mm**
 
@@ -51,7 +54,8 @@ The V-Minion is a compact open-frame cartesian printer from Rat Rig with a 180 m
 
 ---
 
-### [Voron0](./Voron0) — [Voron 0](https://github.com/VoronDesign/Voron-0)
+### [Voron0](./Voron0/printer.cfg)
+[↗ Voron 0](https://github.com/VoronDesign/Voron-0)
 
 **CoreXY · 120 × 120 × 121 mm**
 
@@ -59,14 +63,15 @@ The V-Minion is a compact open-frame cartesian printer from Rat Rig with a 180 m
 |---|---|
 | **Mainboard** | BTT SKR Pico V1.0 + LDO Picobilical |
 | **Probe** | — |
-| **Extruder** | Galileo 2 |
+| **Extruder** | Bondtech LGX Lite |
 | **Hotend** | E3D Revo |
 
 The smallest Voron in the fleet — a fully enclosed CoreXY designed to print ABS and other engineering filaments in a tiny footprint. All single mechanical parts for larger Vorons can be printed on its 120 mm bed.
 
 ---
 
-### [Voron](./Voron) · [Voron-2-350](./Voron-2-350) — [Voron 2.4](https://github.com/VoronDesign/Voron-2)
+### [Voron](./Voron/printer.cfg) · [Voron-2-350](./Voron-2-350/printer.cfg)
+[↗ Voron 2.4](https://github.com/VoronDesign/Voron-2)
 
 **CoreXY**
 
